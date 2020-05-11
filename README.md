@@ -18,6 +18,7 @@ Keep in mind that you will be able to access the weather images using:
 ## App behaviour
 
 The app should should fetch and display the current weather info in London and weather forecasts for the next 5 days as soon as it gets open and then refresh every minute.
+This is a Desktop App
 
 ## How to run
 
@@ -35,8 +36,8 @@ On separate tab run npm run build, then npm run serve
 
 ## Command Line
 
-* dev: "watch 'npm run build' src to look at all changes* without run the build every time. After saved it will* automatically compiled and create a new bundle.js. Refresh the page to see all changes.
-* start: "node index" to initialised server on localhost:4000* in this case
+* dev: "watch 'npm run build' src to look at all changes without run the build every time. After saved it will automatically compiled and create a new bundle.js. Refresh the page to see all changes.
+* start: "node index" to initialised server on localhost:4000 in this case
 * build to compile the file and create 'dist' folder to host bundle.js
 * test to check any error in the code while compiling
 * serve to lanch the page on localhost
