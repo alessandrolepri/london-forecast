@@ -1,0 +1,49 @@
+{
+  "name": "5dayforecastlondon",
+  "version": "1.0.0",
+  "description": "London 5 days Forecast with OpenWeather API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "watch 'npm run build' src",
+    "serve": "webpack-dev-server --mode=development",
+    "build": "webpack -p",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alessandrolepri/5dayForecastLondon.git"
+  },
+  "author": "Alessandro Lepri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alessandrolepri/5dayForecastLondon/issues"
+  },
+  "homepage": "https://github.com/alessandrolepri/5dayForecastLondon#readme",
+  "dependencies": {
+    "dotenv-webpack": "^1.7.0",
+    "express": "^4.17.1",
+    "html-webpack-plugin": "^4.3.0",
+    "promise": "^8.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@webpack-cli/serve": "^0.2.0",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.5.3",
+    "file-loader": "^6.0.0",
+    "node-sass": "^4.14.1",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
+    "url-loader": "^4.1.0",
+    "watch": "^1.0.2",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  },
+    "resolutions": {
+    "terser": "3.14.1"
+  }
+}
