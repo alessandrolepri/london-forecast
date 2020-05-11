@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let detailIcon3 = document.getElementById('det-icon3');
     let detailIcon4 = document.getElementById('det-icon4');
     let detailIcon5 = document.getElementById('det-icon5');
-    let reload = document.getElementById('reloading');
     let descWeather = document.getElementById('description');
     let descWeather1 = document.getElementById('description1');
     let descWeather3 = document.getElementById('description3');
@@ -41,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         .then(response => response.json()
         .then(data => {
+            // console.log(response.status);
             // console.log('data', data, data.city.name);
             let cityName = data.city.name;
 
@@ -50,13 +50,13 @@ document.addEventListener("DOMContentLoaded", () => {
             for (let i = 0; i < 8; i++) {
                 // console.log(datas[i], 'check data');
 
-                let icon = datas[i].weather[0].icon;
-                let description = datas[i].weather[0].description;
-                let imgLink = "<img class= weatherImg src= https://openweathermap.org/img/wn/";
-                let endImgLink = "@2x.png><img>";
-                let descriptionInfo = `<p> ${description} </p>`; 
+                // let icon = datas[i].weather[0].icon;
+                // let description = datas[i].weather[0].description;
+                // let imgLink = "<img class= weatherImg src= https://openweathermap.org/img/wn/";
+                // let endImgLink = "@2x.png><img>";
+                // let descriptionInfo = `<p> ${description} </p>`; 
 
-                let img = imgLink + icon + endImgLink + descriptionInfo;
+                // let img = imgLink + icon + endImgLink + descriptionInfo;
 
                 currentLocation.innerHTML = cityName;
                 currentTemp.innerHTML = Math.ceil(datas[i].main.temp) + "&deg";
@@ -66,13 +66,105 @@ document.addEventListener("DOMContentLoaded", () => {
                 thirdDay.innerHTML = days[new Date().getDay() + 2].slice(0, 3);
                 fourthDay.innerHTML = days[new Date().getDay() + 3].slice(0, 3);
                 fifthDay.innerHTML = days[new Date().getDay() + 4].slice(0, 3);
+
+                let icon = datas[i].weather[0].icon;
+                let description = datas[i].weather[0].description;
+                let imgLink = "<img class= weatherImg src= https://openweathermap.org/img/wn/";
+                let endImgLink = "@2x.png><img>";
+                let descriptionInfo = `<p> ${description} </p>`;
+
+                let img = imgLink + icon + endImgLink + descriptionInfo;
+
                 detailIcon.innerHTML = img;
                 descWeather.innerHTML = description;
-            }
+            };
+
+            for (let j = 8; j < 16; j++) {
+                // console.log(datas[j]);
+
+                temp1.innerHTML = Math.ceil(datas[j].main.temp) + "&deg";
+
+                let icon = datas[j].weather[0].icon;
+                let description = datas[j].weather[0].description;
+                let imgLink = "<img class= weatherImg src= https://openweathermap.org/img/wn/";
+                let endImgLink = "@2x.png><img>";
+                let descriptionInfo = `<p> ${description} </p>`;
+
+                let img = imgLink + icon + endImgLink + descriptionInfo;
+
+                detailIcon1.innerHTML = img;
+                descWeather1.innerHTML = description;
+            };
+
+            for (let k = 16; k < 24; k++) {
+                // console.log(datas[k]);
+
+                temp3.innerHTML = Math.ceil(datas[k].main.temp) + "&deg";
+
+                let icon = datas[k].weather[0].icon;
+                let description = datas[k].weather[0].description;
+                let imgLink = "<img class= weatherImg src= https://openweathermap.org/img/wn/";
+                let endImgLink = "@2x.png><img>";
+                let descriptionInfo = `<p> ${description} </p>`;
+
+                let img = imgLink + icon + endImgLink + descriptionInfo;
+
+                detailIcon3.innerHTML = img;
+                descWeather3.innerHTML = description;
+            };
+
+            for (let r = 24; r < 32; r++) {
+                // console.log(datas[r]);
+
+                temp4.innerHTML = Math.ceil(datas[r].main.temp) + "&deg";
+
+                let icon = datas[r].weather[0].icon;
+                let description = datas[r].weather[0].description;
+                let imgLink = "<img class= weatherImg src= https://openweathermap.org/img/wn/";
+                let endImgLink = "@2x.png><img>";
+                let descriptionInfo = `<p> ${description} </p>`;
+
+                let img = imgLink + icon + endImgLink + descriptionInfo;
+
+                detailIcon4.innerHTML = img;
+                descWeather4.innerHTML = description;
+            };
+
+            for (let w = 32; w < 40; w++) {
+                // console.log(datas[w]);
+
+                temp5.innerHTML = Math.ceil(datas[w].main.temp) + "&deg";
+
+                let icon = datas[w].weather[0].icon;
+                let description = datas[w].weather[0].description;
+                let imgLink = "<img class= weatherImg src= https://openweathermap.org/img/wn/";
+                let endImgLink = "@2x.png><img>";
+                let descriptionInfo = `<p> ${description} </p>`;
+
+                let img = imgLink + icon + endImgLink + descriptionInfo;
+
+                detailIcon5.innerHTML = img;
+                descWeather5.innerHTML = description;
+            };
         })
         )
         .catch(err => {
-            console.log('Looks like there was a problem: \n2', err)
+            alert('Looks like there was a problem', err)
         });
+
+        function progress(timeleft, timetotal, $element) {
+            let progressBarWidth = timeleft * $element.width() / timetotal;
+            $element.find('div').animate({
+                width: progressBarWidth
+            }, 500);
+            $('#reloading').html("Reloading in" + " " + timeleft + "s");
+            if (timeleft > 0) {
+                setTimeout(function () {
+                    progress(timeleft - 1, timetotal, $element);
+                }, 1000);
+            }
+        }
+
+        progress(60, 60, $('#count-bar'));
 
 });

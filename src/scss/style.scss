@@ -23,6 +23,7 @@
     position: relative;
     flex-direction: column;
     line-height: 60px;
+    height: 80vh;
 }
 
 .days {
@@ -53,7 +54,7 @@
     font-size: 12px;
     height: 10px;
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 5px;
 }
 
 #current-temp,
@@ -132,8 +133,11 @@
 
 p {
     position: absolute;
-    margin: 45px 0px 0px -45px;
-    width: 137px;
+    margin: 45px 0px 0px -106px;
+    width: 200px;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: right;
+    padding-right: 10px;
 }
 
 .days {
@@ -154,13 +158,3 @@ p {
         text-transform: uppercase;
     }
 }
-
-// .days > div:first-child,
-// .days > div:nth-child(2) {
-//     padding: 9px;
-//     color: white;
-//     font-family: 'Roboto Condensed ',
-//     sans-serif;
-//     font-size: 30px;
-//     text-transform: uppercase;
-// }
