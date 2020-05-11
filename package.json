@@ -23,6 +23,7 @@
   "dependencies": {
     "dotenv-webpack": "^1.7.0",
     "express": "^4.17.1",
+    "heroku": "^7.40.0",
     "html-webpack-plugin": "^4.3.0",
     "promise": "^8.1.0"
   },
@@ -43,7 +44,7 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0"
   },
-    "resolutions": {
+  "resolutions": {
     "terser": "3.14.1"
   }
 }
