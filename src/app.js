@@ -50,14 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
             for (let i = 0; i < 8; i++) {
                 // console.log(datas[i], 'check data');
 
-                // let icon = datas[i].weather[0].icon;
-                // let description = datas[i].weather[0].description;
-                // let imgLink = "<img class= weatherImg src= https://openweathermap.org/img/wn/";
-                // let endImgLink = "@2x.png><img>";
-                // let descriptionInfo = `<p> ${description} </p>`; 
-
-                // let img = imgLink + icon + endImgLink + descriptionInfo;
-
                 currentLocation.innerHTML = cityName;
                 currentTemp.innerHTML = Math.ceil(datas[i].main.temp) + "&deg";
                 temp.innerHTML = Math.ceil(datas[i].main.temp) + "&deg";
