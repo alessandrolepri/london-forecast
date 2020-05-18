@@ -8,8 +8,7 @@
     "dev": "watch 'npm run build' src",
     "serve": "webpack-dev-server --mode=development",
     "build": "webpack -p",
-    "start": "node index",
-    "heroku-postbuild": "ng build --prod"
+    "start": "node index"
   },
   "repository": {
     "type": "git",
