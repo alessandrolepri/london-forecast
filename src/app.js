@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     currentTime.innerHTML =  firstDots + today + " " + "GMT" + lastDots;
 
 
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=London,uk&APPID=${process.env.APIKEY}&units=metric`)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=London,uk&APPID=${process.env.API_KEY}&units=metric`)
 
         .then(response => response.json()
         .then(data => {
