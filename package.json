@@ -8,7 +8,8 @@
     "dev": "watch 'npm run build' src",
     "serve": "webpack-dev-server --mode=development",
     "build": "webpack -p",
-    "start": "node index"
+    "start": "node index",
+    "postinstall": "ng build"
   },
   "repository": {
     "type": "git",
