@@ -1,6 +1,10 @@
 {
   "name": "5dayforecastlondon",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.2.x",
+    "npm": "6.14.x"
+  },
   "description": "London 5 days Forecast with OpenWeather API",
   "main": "index.js",
   "scripts": {
