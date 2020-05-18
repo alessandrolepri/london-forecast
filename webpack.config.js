@@ -1,53 +1,96 @@
-const path = require ('path');
-const webpack = require ('webpack');
-const HtmlWebpackPlugin = require ('html-webpack-plugin');
-const Dotenv = require ('dotenv-webpack');
+const path = require("path");
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
+
+const fs = require("fs");
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
 module.exports = {
-  entry: './src/app.js',
+
+  entry: resolveApp("src/app.js"),
   output: {
-    filename: 'bundle.js',
-    path: path.resolve ('dist'),
-    publicPath: '/',
+    path: resolveApp("dist"),
+    filename: "bundle.js",
+    publicPath: "",
   },
+  mode: 'development',
+  devtool: 'eval',
   module: {
-    rules: [
+    rules: [{
+        test: /\.(png|svg|jpg)$/,
+        use: ["file-loader"],
+      },
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
+        // look for .js or .jsx files
+        test: /\.(js|jsx)$/,
+        // in the `src` directory
+        include: resolveApp("src"),
+        exclude: /(node_modules)/,
+        use: {
+          // use babel for transpiling JavaScript files
+          loader: "babel-loader"
+        },
       },
       {
         test: /\.css$/,
-        loader: ['style-loader', 'css-loader'],
+        loader: ["style-loader", "css-loader"],
       },
       {
         test: /\.s(a|c)ss$/,
-        loader: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [{
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 2,
+              modules: {
+                auto: true
+              },
+            },
+          },
+          {
+            loader: "sass-loader",
+          },
+        ],
       },
     ],
   },
   devServer: {
-    contentBase: path.resolve ('src'),
+    contentBase: path.resolve("src"),
     hot: true,
     open: true,
-    port: 4000,
+    port: 8000,
     watchContentBase: true,
     historyApiFallback: true,
     proxy: {
-      '/api': {
-        target: 'http://localhost:4000',
+      "/api": {
+        target: "http://localhost:4000",
         secure: false,
       },
     },
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin (),
-    new HtmlWebpackPlugin ({
-      template: 'src/index.html',
-      filename: 'index.html',
-      inject: 'body',
+    new Dotenv(),
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: __dirname + "/src/index.html",
+      filename: "index.html",
+      inject: "body",
     }),
-    new Dotenv (),
   ],
+  resolve: {
+    // File extensions. Add others and needed (e.g. scss, json)
+    extensions: [".js", ".jsx"],
+    modules: ["node_modules"],
+    // Aliases help with shortening relative paths
+    // 'Components/button' === '../../../components/button'
+    alias: {
+      Components: path.resolve(resolveApp("src"), "components"),
+      Containers: path.resolve(resolveApp("src"), "containers"),
+      Utils: path.resolve(resolveApp("src"), "utils"),
+    },
+  },
 };
