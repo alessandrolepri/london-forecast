@@ -9,7 +9,7 @@
     "serve": "webpack-dev-server --mode=development",
     "build": "webpack -p",
     "start": "node index",
-    "postinstall": "ng build"
+    "heroku-postbuild": "ng build --prod"
   },
   "repository": {
     "type": "git",
