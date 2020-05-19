@@ -30,7 +30,9 @@
     "heroku": "^7.40.0",
     "html-webpack-plugin": "^4.3.0",
     "webpack": "^4.43.0",
-    "promise": "^8.1.0"
+    "promise": "^8.1.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
@@ -44,9 +46,7 @@
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
-    "watch": "^1.0.2",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.11.0"
+    "watch": "^1.0.2"
   },
   "resolutions": {
     "terser": "3.14.1"
