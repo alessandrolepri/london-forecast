@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let progressBarWidth = timeleft * $element.width() / timetotal;
             $element.find('div').animate({
                 width: progressBarWidth
-            }, 500);
+            }, 100);
             $('#reloading').html("Reloading in" + " " + timeleft + "s");
             if (timeleft > 0) {
                 setTimeout(function () {
@@ -165,6 +165,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        progress(60, 60, $('#count-bar'));
+        progress(900, 900, $('#count-bar'));
 
 });
