@@ -36,115 +36,121 @@ document.addEventListener("DOMContentLoaded", () => {
     currentTime.innerHTML =  firstDots + today + " " + "GMT" + lastDots;
 
 
-    const apiKey = process.env.API_KEY;
+    
 
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=London,uk&APPID=${apiKey}&units=metric`)
+    fetch(
+    `https://api.openweathermap.org/data/2.5/forecast?q=London,uk&APPID=${process.env.API_KEY}&units=metric`
+    )      
+    .then((response) =>
+        response.json().then((data) => {
+          // console.log(response.status);
+          // console.log('data', data, data.city.name);
+        let cityName = data.city.name;
 
-        .then(response => response.json()
-        .then(data => {
-            // console.log(response.status);
-            // console.log('data', data, data.city.name);
-            let cityName = data.city.name;
+        let datas = data.list;
+          // console.log(datas);
 
-            let datas = data.list;
-            // console.log(datas);
+        for (let i = 0; i < 8; i++) {
+            // console.log(datas[i], 'check data');
 
-            for (let i = 0; i < 8; i++) {
-                // console.log(datas[i], 'check data');
+            currentLocation.innerHTML = cityName;
+            currentTemp.innerHTML = Math.ceil(datas[i].main.temp) + "&deg";
+            temp.innerHTML = Math.ceil(datas[i].main.temp) + "&deg";
+            firstDay.innerHTML = days[new Date().getDay()].slice(0, 3);
+            secondDay.innerHTML = days[new Date().getDay() + 1].slice(0, 3);
+            thirdDay.innerHTML = days[new Date().getDay() + 2].slice(0, 3);
+            fourthDay.innerHTML = days[new Date().getDay() + 3].slice(0, 3);
+            fifthDay.innerHTML = days[new Date().getDay() + 4].slice(0, 3);
 
-                currentLocation.innerHTML = cityName;
-                currentTemp.innerHTML = Math.ceil(datas[i].main.temp) + "&deg";
-                temp.innerHTML = Math.ceil(datas[i].main.temp) + "&deg";
-                firstDay.innerHTML = days[new Date().getDay()].slice(0, 3);
-                secondDay.innerHTML = days[new Date().getDay() + 1].slice(0, 3);
-                thirdDay.innerHTML = days[new Date().getDay() + 2].slice(0, 3);
-                fourthDay.innerHTML = days[new Date().getDay() + 3].slice(0, 3);
-                fifthDay.innerHTML = days[new Date().getDay() + 4].slice(0, 3);
+            let icon = datas[i].weather[0].icon;
+            let description = datas[i].weather[0].description;
+            let imgLink =
+            "<img class= weatherImg src= https://openweathermap.org/img/wn/";
+            let endImgLink = "@2x.png><img>";
+            let descriptionInfo = `<p> ${description} </p>`;
 
-                let icon = datas[i].weather[0].icon;
-                let description = datas[i].weather[0].description;
-                let imgLink = "<img class= weatherImg src= https://openweathermap.org/img/wn/";
-                let endImgLink = "@2x.png><img>";
-                let descriptionInfo = `<p> ${description} </p>`;
+            let img = imgLink + icon + endImgLink + descriptionInfo;
 
-                let img = imgLink + icon + endImgLink + descriptionInfo;
+            detailIcon.innerHTML = img;
+            descWeather.innerHTML = description;
+        }
 
-                detailIcon.innerHTML = img;
-                descWeather.innerHTML = description;
-            };
+        for (let j = 8; j < 16; j++) {
+            // console.log(datas[j]);
 
-            for (let j = 8; j < 16; j++) {
-                // console.log(datas[j]);
+            temp1.innerHTML = Math.ceil(datas[j].main.temp) + "&deg";
 
-                temp1.innerHTML = Math.ceil(datas[j].main.temp) + "&deg";
+            let icon = datas[j].weather[0].icon;
+            let description = datas[j].weather[0].description;
+            let imgLink =
+            "<img class= weatherImg src= https://openweathermap.org/img/wn/";
+            let endImgLink = "@2x.png><img>";
+            let descriptionInfo = `<p> ${description} </p>`;
 
-                let icon = datas[j].weather[0].icon;
-                let description = datas[j].weather[0].description;
-                let imgLink = "<img class= weatherImg src= https://openweathermap.org/img/wn/";
-                let endImgLink = "@2x.png><img>";
-                let descriptionInfo = `<p> ${description} </p>`;
+            let img = imgLink + icon + endImgLink + descriptionInfo;
 
-                let img = imgLink + icon + endImgLink + descriptionInfo;
+            detailIcon1.innerHTML = img;
+            descWeather1.innerHTML = description;
+        }
 
-                detailIcon1.innerHTML = img;
-                descWeather1.innerHTML = description;
-            };
+        for (let k = 16; k < 24; k++) {
+            // console.log(datas[k]);
 
-            for (let k = 16; k < 24; k++) {
-                // console.log(datas[k]);
+            temp3.innerHTML = Math.ceil(datas[k].main.temp) + "&deg";
 
-                temp3.innerHTML = Math.ceil(datas[k].main.temp) + "&deg";
+            let icon = datas[k].weather[0].icon;
+            let description = datas[k].weather[0].description;
+            let imgLink =
+            "<img class= weatherImg src= https://openweathermap.org/img/wn/";
+            let endImgLink = "@2x.png><img>";
+            let descriptionInfo = `<p> ${description} </p>`;
 
-                let icon = datas[k].weather[0].icon;
-                let description = datas[k].weather[0].description;
-                let imgLink = "<img class= weatherImg src= https://openweathermap.org/img/wn/";
-                let endImgLink = "@2x.png><img>";
-                let descriptionInfo = `<p> ${description} </p>`;
+            let img = imgLink + icon + endImgLink + descriptionInfo;
 
-                let img = imgLink + icon + endImgLink + descriptionInfo;
+            detailIcon3.innerHTML = img;
+            descWeather3.innerHTML = description;
+        }
 
-                detailIcon3.innerHTML = img;
-                descWeather3.innerHTML = description;
-            };
+        for (let r = 24; r < 32; r++) {
+            // console.log(datas[r]);
 
-            for (let r = 24; r < 32; r++) {
-                // console.log(datas[r]);
+            temp4.innerHTML = Math.ceil(datas[r].main.temp) + "&deg";
 
-                temp4.innerHTML = Math.ceil(datas[r].main.temp) + "&deg";
+            let icon = datas[r].weather[0].icon;
+            let description = datas[r].weather[0].description;
+            let imgLink =
+            "<img class= weatherImg src= https://openweathermap.org/img/wn/";
+            let endImgLink = "@2x.png><img>";
+            let descriptionInfo = `<p> ${description} </p>`;
 
-                let icon = datas[r].weather[0].icon;
-                let description = datas[r].weather[0].description;
-                let imgLink = "<img class= weatherImg src= https://openweathermap.org/img/wn/";
-                let endImgLink = "@2x.png><img>";
-                let descriptionInfo = `<p> ${description} </p>`;
+            let img = imgLink + icon + endImgLink + descriptionInfo;
 
-                let img = imgLink + icon + endImgLink + descriptionInfo;
+            detailIcon4.innerHTML = img;
+            descWeather4.innerHTML = description;
+        }
 
-                detailIcon4.innerHTML = img;
-                descWeather4.innerHTML = description;
-            };
+        for (let w = 32; w < 40; w++) {
+            // console.log(datas[w]);
 
-            for (let w = 32; w < 40; w++) {
-                // console.log(datas[w]);
+            temp5.innerHTML = Math.ceil(datas[w].main.temp) + "&deg";
 
-                temp5.innerHTML = Math.ceil(datas[w].main.temp) + "&deg";
+            let icon = datas[w].weather[0].icon;
+            let description = datas[w].weather[0].description;
+            let imgLink =
+            "<img class= weatherImg src= https://openweathermap.org/img/wn/";
+            let endImgLink = "@2x.png><img>";
+            let descriptionInfo = `<p> ${description} </p>`;
 
-                let icon = datas[w].weather[0].icon;
-                let description = datas[w].weather[0].description;
-                let imgLink = "<img class= weatherImg src= https://openweathermap.org/img/wn/";
-                let endImgLink = "@2x.png><img>";
-                let descriptionInfo = `<p> ${description} </p>`;
+            let img = imgLink + icon + endImgLink + descriptionInfo;
 
-                let img = imgLink + icon + endImgLink + descriptionInfo;
-
-                detailIcon5.innerHTML = img;
-                descWeather5.innerHTML = description;
-            };
+            detailIcon5.innerHTML = img;
+            descWeather5.innerHTML = description;
+        }
         })
-        )
-        .catch(err => {
-            alert('Looks like there was a problem', err)
-        });
+    )
+    .catch((err) => {
+        alert("Looks like there was a problem", err);
+    });
 
         function progress(timeleft, timetotal, $element) {
             let progressBarWidth = timeleft * $element.width() / timetotal;
