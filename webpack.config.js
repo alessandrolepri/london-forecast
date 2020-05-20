@@ -80,6 +80,11 @@ module.exports = {
       filename: "index.html",
       inject: "body",
     }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        API_KEY: JSON.stringify(process.env.API_KEY)
+      }
+    })
   ],
   resolve: {
     // File extensions. Add others and needed (e.g. scss, json)
